@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    // MARK: - Variables
+    @IBOutlet weak var soundSwitch: UISwitch!
     @IBOutlet weak var messageLabel: UILabel!
-    var index = 0
+    @IBOutlet weak var awesomeImage: UIImageView!
+    var awesomePlayer = AVAudioPlayer()
+    var index = -1
+    var imageNumber = -1
+    var soundNumber = -1
+    let numberOfImages = 9
+    let numberOfSounds = 5
+    
     
     // this code executes when the view controller loads
     override func viewDidLoad() {
@@ -20,8 +30,38 @@ class ViewController: UIViewController {
         
         print("The View Controller Loaded")
     }
-
-
+    
+    // Mark: - Functions
+    func playSound(soundName: String, audioPlayer: inout AVAudioPlayer) {
+        if let sound = NSDataAsset (name: soundName){
+            do{
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
+            } catch {
+                print("error \(soundName) could not be played")
+            }
+        }else {
+            print("error \(soundName) did not load")
+        }
+    }
+    
+    func nonRepeatingRandomNumber(lastNumber: Int, maxNumber: Int) -> Int {
+        var newIndex = -1
+        repeat {
+            newIndex = Int(arc4random_uniform(UInt32(maxNumber)))
+        }while lastNumber == newIndex
+        return newIndex
+    }
+    
+    @IBAction func soundSwitchPressed(_ sender: UISwitch) {
+        if !soundSwitch.isOn && soundNumber != -1{
+            awesomePlayer.stop()
+        }
+    }
+    
+    
+    //MARK: - Meat and Potatos
+    
     @IBAction func MessageButtonPressed(_ sender: UIButton) {
         
         let messages = ["You are fantastic",
@@ -32,30 +72,26 @@ class ViewController: UIViewController {
                        "You are da bomb",
                        "I can't wait to use your app"]
         
-        var newIndex = -1
         
-        repeat {
-            newIndex = Int(arc4random_uniform(UInt32(messages.count)))
-        }while index == newIndex
-        
-        index = newIndex
+        index = nonRepeatingRandomNumber(lastNumber: index, maxNumber: messages.count)
         messageLabel.text = messages[index]
         
-        /*messageLabel.text = message[index]
-        index = index + 1
+        awesomeImage.isHidden = false
         
-        if index == message.count {
-            index = 0 */
+        imageNumber = nonRepeatingRandomNumber(lastNumber: imageNumber, maxNumber: numberOfImages)
+        awesomeImage.image = UIImage(named: "image\(imageNumber)")
         
-        /* let message1 = "You are fantastic"
-        let message2 = "You are great"
-        let message3 = You are amazing"
- 
- messageLabel.text == message1{
- messageLabel.text = message2
- } else if messageLabel.text == message2{
- messageLabel.text = message3
-         }else messageLabel.text = message1}*/
+        
+        if soundSwitch.isOn == true {
+            
+            soundNumber = nonRepeatingRandomNumber(lastNumber: soundNumber, maxNumber: numberOfSounds)
+            
+            let soundName = "sound\(soundNumber)"
+            playSound(soundName: soundName, audioPlayer: &awesomePlayer)
+        
+        }
+        
+        
         }
         
     }

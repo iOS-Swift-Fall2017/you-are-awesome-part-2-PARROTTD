@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,27 +23,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You Are Awesome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7p-8U-rtp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Are Awesome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7p-8U-rtp">
                                 <rect key="frame" x="16" y="13" width="343" height="137"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="137" id="Wvv-ED-sVi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="CourierNewPS-BoldMT" family="Courier New" pointSize="17"/>
                                 <color key="textColor" red="0.23436959370210153" green="0.40203421313847121" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="1" green="0.12743715584842663" blue="0.25224311114964315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZq-8K-WZp">
-                                <rect key="frame" x="135" y="158" width="104" height="30"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image0" translatesAutoresizingMaskIntoConstraints="NO" id="deT-GF-2gh">
+                                <rect key="frame" x="16" y="196" width="343" height="451"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mute Sound:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Eg-yu-3eM">
+                                <rect key="frame" x="16" y="163" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-AF-9YQ">
+                                <rect key="frame" x="123" y="158" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="soundSwitchPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="gcP-vq-WHp"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZq-8K-WZp">
+                                <rect key="frame" x="227" y="152" width="132" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="A4q-bX-2c0"/>
+                                </constraints>
                                 <state key="normal" title="Show Messege"/>
                                 <connections>
                                     <action selector="MessageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s2K-PD-dbB"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.58708261303509079" green="1" blue="0.50817323041127294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="centerX" secondItem="ZZq-8K-WZp" secondAttribute="centerX" constant="-105.5" id="1Y7-wR-ayK"/>
+                            <constraint firstAttribute="bottom" secondItem="deT-GF-2gh" secondAttribute="bottom" constant="20" symbolic="YES" id="1kP-Tw-0xg"/>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6QO-xO-80g"/>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="leading" secondItem="deT-GF-2gh" secondAttribute="leading" id="8VK-Uh-M32"/>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="E9A-U9-fDD"/>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="trailing" secondItem="deT-GF-2gh" secondAttribute="trailing" id="X9d-Zu-7CH"/>
+                            <constraint firstItem="o7p-8U-rtp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-7" id="YqS-7b-hfu"/>
+                            <constraint firstItem="deT-GF-2gh" firstAttribute="top" secondItem="ZZq-8K-WZp" secondAttribute="bottom" constant="1" id="bN8-TY-KjD"/>
+                            <constraint firstItem="ZZq-8K-WZp" firstAttribute="top" secondItem="o7p-8U-rtp" secondAttribute="bottom" constant="2" id="c8Q-C3-Im5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="awesomeImage" destination="deT-GF-2gh" id="Xw5-NW-bdd"/>
                         <outlet property="messageLabel" destination="o7p-8U-rtp" id="9NP-F1-UgW"/>
+                        <outlet property="soundSwitch" destination="NvK-AF-9YQ" id="9jA-RO-5HM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -50,4 +85,7 @@
             <point key="canvasLocation" x="116" y="32.833583208395808"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image0" width="246" height="205"/>
+    </resources>
 </document>
